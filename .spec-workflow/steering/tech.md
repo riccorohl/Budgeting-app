@@ -1,42 +1,45 @@
 # Technology Stack
 
 ## Project Type
-React-based web application with mobile-responsive design for personal budgeting and financial management, specifically designed for cross-border financial management between US and Mexican banking systems.
+Desktop-optimized web application for personal budgeting and financial management, specifically designed for cross-border financial management between US and Mexican banking systems. Built as a Next.js application with comprehensive financial tracking, dual-currency support, and real-time data integration.
 
 ## Core Technologies
 
 ### Primary Language(s)
 - **Language**: TypeScript 5.0+
 - **Runtime**: Node.js 18+ (for development and build tools)
-- **Language-specific tools**: npm/yarn for package management, Vite for build tooling
+- **Language-specific tools**: pnpm for package management, Next.js for build tooling
 
 ### Key Dependencies/Libraries
+- **Next.js 14+**: React framework with App Router for modern web application development
 - **React 18+**: Core UI framework with hooks and modern patterns
-- **React Router 6+**: Client-side routing for SPA navigation
-- **Material-UI (MUI) 5+**: Component library for consistent design system
-- **React Query (TanStack Query)**: Server state management and caching
-- **Zustand**: Lightweight state management for client-side state
-- **React Hook Form**: Form handling and validation
-- **Axios**: HTTP client for API communications
-- **Chart.js with react-chartjs-2**: Data visualization for budgets and spending trends
-- **React Big Calendar**: Calendar component for payment scheduling
-- **Date-fns**: Date manipulation and formatting utilities
-- **React Dropzone**: File upload for savings goal images
+- **Tailwind CSS v4**: Utility-first CSS framework for styling and responsive design
+- **shadcn/ui**: Modern, accessible component library built on Radix UI primitives
+- **Radix UI**: Headless UI primitives for accessible component development
+- **Lucide React**: Icon library with consistent design language
+- **Recharts**: Data visualization library for financial charts and graphs
+- **React Hook Form**: Form handling and validation with minimal re-renders
+- **Zod**: TypeScript-first schema validation for forms and API data
+- **date-fns**: Modern date manipulation and formatting utilities
+- **next-themes**: Theme management for dark/light mode support
+- **class-variance-authority**: Utility for creating variant-based component APIs
+- **clsx & tailwind-merge**: Utilities for conditional CSS class management
 
 ### Application Architecture
-- **Architecture Pattern**: Component-based SPA with separation of concerns
+- **Architecture Pattern**: Component-based SPA with Next.js App Router
 - **State Management**: 
-  - Global state (user, settings, exchange rates): Zustand stores
-  - Server state (transactions, budgets): React Query
-  - Form state: React Hook Form
-- **Component Structure**: Atomic design pattern (atoms, molecules, organisms, templates)
-- **Data Flow**: Unidirectional data flow with React hooks and context
+  - Local component state: React hooks (useState, useEffect, useReducer)
+  - Global state: Context API and custom hooks for shared state
+  - Server state: Next.js built-in data fetching with SWR/React Query integration
+- **Component Structure**: Atomic design pattern with shadcn/ui component system
+- **Data Flow**: Unidirectional data flow with React hooks and server components
+- **Routing**: Next.js App Router with file-based routing and layouts
 
 ### Data Storage (if applicable)
-- **Primary storage**: Local Storage for user preferences and offline data
-- **Caching**: React Query cache for API responses and exchange rate data
-- **Data formats**: JSON for all data exchange and storage
-- **Future consideration**: IndexedDB for larger offline datasets
+- **Primary storage**: PostgreSQL database for persistent data storage
+- **Caching**: Next.js built-in caching, Redis for session management
+- **Data formats**: JSON for all data exchange and API responses
+- **File storage**: Local file system for development, cloud storage for production
 
 ### External Integrations (if applicable)
 - **APIs**: 
@@ -44,23 +47,23 @@ React-based web application with mobile-responsive design for personal budgeting
   - Plaid API for US bank account integration
   - Future: Mexican banking APIs for MXN transaction import
 - **Protocols**: HTTPS/REST for all external API communications
-- **Authentication**: OAuth 2.0 for bank connections, JWT for user sessions
+- **Authentication**: OAuth 2.0 for bank connections, NextAuth.js for user sessions
 
 ### Monitoring & Dashboard Technologies (if applicable)
-- **Dashboard Framework**: React with Material-UI components
-- **Real-time Communication**: Polling for exchange rate updates (daily)
-- **Visualization Libraries**: Chart.js for spending trends, progress bars for savings goals
-- **State Management**: Zustand for global state, React Query for server state
+- **Dashboard Framework**: Next.js with React components and Tailwind CSS
+- **Real-time Communication**: Polling for exchange rate updates, WebSocket for live data
+- **Visualization Libraries**: Recharts for financial charts, custom progress components
+- **State Management**: React Context API with custom hooks for dashboard state
 
 ## Development Environment
 
 ### Build & Development Tools
-- **Build System**: Vite for fast development and optimized production builds
-- **Package Management**: npm with lockfile for dependency management
-- **Development workflow**: Hot module replacement (HMR) for instant updates
+- **Build System**: Next.js with Turbopack for fast development builds
+- **Package Management**: pnpm with lockfile for dependency management
+- **Development workflow**: Hot module replacement (HMR) with Next.js dev server
 
 ### Code Quality Tools
-- **Static Analysis**: ESLint with TypeScript rules and React hooks rules
+- **Static Analysis**: ESLint with Next.js and TypeScript rules
 - **Formatting**: Prettier for consistent code formatting
 - **Testing Framework**: Jest + React Testing Library for unit and integration tests
 - **Documentation**: JSDoc for component documentation, Storybook for component showcase
@@ -71,29 +74,30 @@ React-based web application with mobile-responsive design for personal budgeting
 - **Code Review Process**: Pull request reviews required before merging
 
 ### Dashboard Development (if applicable)
-- **Live Reload**: Vite HMR for instant development feedback
-- **Port Management**: Vite dev server on configurable port (default 3000)
+- **Live Reload**: Next.js HMR for instant development feedback
+- **Port Management**: Next.js dev server on configurable port (default 3000)
 - **Multi-Instance Support**: Multiple dev instances can run on different ports
 
 ## Deployment & Distribution (if applicable)
-- **Target Platform(s)**: Web browsers (Chrome, Firefox, Safari, Edge) with mobile responsiveness
-- **Distribution Method**: Static hosting on Vercel/Netlify with CDN distribution
+- **Target Platform(s):** Web browsers (Chrome, Firefox, Safari, Edge) with desktop-optimized responsive design
+- **Distribution Method**: Vercel deployment with CDN distribution
 - **Installation Requirements**: Modern web browser with JavaScript enabled
-- **Update Mechanism**: Automatic updates through static hosting platform
+- **Update Mechanism**: Automatic updates through Vercel deployment platform
 
 ## Technical Requirements & Constraints
 
 ### Performance Requirements
-- **Initial Load Time**: < 3 seconds on 3G connection
-- **Time to Interactive**: < 5 seconds
+- **Initial Load Time**: < 2 seconds on 3G connection
+- **Time to Interactive**: < 3 seconds
 - **Bundle Size**: < 500KB gzipped for initial bundle
 - **Exchange Rate Updates**: Daily API calls with 24-hour caching
 - **Bank Data Sync**: Real-time updates when user initiates sync
+- **Desktop Performance**: 60fps animations and smooth scrolling
 
 ### Compatibility Requirements  
 - **Platform Support**: 
   - Desktop: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
-  - Mobile: iOS Safari 14+, Chrome Mobile 90+, Samsung Internet 13+
+  - Mobile: iOS Safari 14+, Chrome Mobile 90+ (responsive fallback)
 - **Dependency Versions**: 
   - Node.js: 18+ (development)
   - React: 18+ (hooks support required)
@@ -104,7 +108,7 @@ React-based web application with mobile-responsive design for personal budgeting
 - **Security Requirements**: 
   - HTTPS only for all communications
   - Secure storage of API keys and sensitive data
-  - Input validation and sanitization
+  - Input validation and sanitization with Zod
   - CSRF protection for forms
 - **Compliance Standards**: 
   - PCI DSS considerations for financial data
@@ -133,21 +137,21 @@ React-based web application with mobile-responsive design for personal budgeting
 ## Technical Decisions & Rationale
 
 ### Decision Log
-1. **React + TypeScript**: Chosen for type safety, excellent developer experience, and strong ecosystem for financial applications. Alternative considered: Vue.js, but React has better charting and form libraries.
+1. **Next.js 14 over Create React App**: Chosen for App Router, server components, and better performance. CRA was considered but Next.js offers superior developer experience and production optimization.
 
-2. **Vite over Create React App**: Vite provides faster development builds, better tree-shaking, and modern ES modules support. CRA was considered but Vite offers superior performance.
+2. **Tailwind CSS + shadcn/ui over Material-UI**: shadcn/ui provides more customization, better TypeScript support, and modern design patterns. Material-UI was considered but shadcn/ui offers better flexibility for custom financial UI components.
 
-3. **Material-UI over custom CSS**: MUI provides consistent design system, accessibility features, and mobile responsiveness out of the box. Custom CSS would require significant development time for similar results.
+3. **Recharts over Chart.js**: Recharts has better React integration, TypeScript support, and modern API. Chart.js was considered but Recharts provides cleaner React patterns and better performance.
 
-4. **Zustand over Redux**: Zustand is simpler, has less boilerplate, and sufficient for the application's state management needs. Redux was considered but adds unnecessary complexity.
+4. **React Hook Form + Zod over Formik**: Better TypeScript integration, less re-renders, and schema validation. Formik was considered but React Hook Form offers superior performance and developer experience.
 
-5. **React Query for server state**: Provides excellent caching, background updates, and error handling for API calls. Alternative considered: SWR, but React Query has better TypeScript support.
+5. **pnpm over npm**: Faster installs, better disk efficiency, and stricter dependency resolution. npm was considered but pnpm provides better performance and reliability.
 
 6. **Exchange Rate API**: Chosen for its simplicity, reliability, and free tier with daily updates. Alternative considered: Fixer.io, but Exchange Rate API has better documentation and simpler integration.
 
 7. **Plaid for US bank integration**: Industry standard for bank connections with excellent security and broad bank support. Alternative considered: Yodlee, but Plaid has better React integration and documentation.
 
-8. **Chart.js for visualizations**: Mature library with good React integration and extensive chart types. Alternative considered: D3.js, but Chart.js provides faster development with less complexity.
+8. **Desktop-First Design**: Prioritizing desktop experience allows for richer data visualization and more complex UI patterns. Mobile responsiveness maintained as progressive enhancement.
 
 ## Known Limitations
 
@@ -164,3 +168,5 @@ React-based web application with mobile-responsive design for personal budgeting
 - **Data Export**: Limited export formats (JSON, CSV). Future enhancement needed for PDF reports and tax preparation formats.
 
 - **Multi-user Support**: Single-user application. Family sharing features would require significant architectural changes including user management and data sharing.
+
+- **Server-Side Rendering**: Limited SSR due to client-side state management. Future enhancement could include SSR for better SEO and initial load performance.

@@ -11,7 +11,7 @@ A comprehensive personal budgeting application designed for people living in Mex
   - Visual representation of financial data with currency conversion
   - Automated tracking for US bank accounts to reduce manual data entry
   - Manual entry support for Mexican bank transactions
-  - Mobile-friendly access for on-the-go budget checking
+  - Desktop-optimized interface for comprehensive budget management
   - Real-time currency conversion and exchange rate tracking
   - Gamified savings experience to combat impulse spending
   - Visual progress tracking and achievement rewards
@@ -101,7 +101,7 @@ A comprehensive personal budgeting application designed for people living in Mex
 2. **Data Security**: Bank-level security for all financial data with encryption and secure authentication
 3. **User Control**: Users maintain full control over their data with easy export and deletion options
 4. **Progressive Disclosure**: Advanced features available but not overwhelming for new users
-5. **Mobile-First**: Responsive design optimized for mobile devices as primary usage platform
+5. **Desktop-First**: Desktop-optimized design with comprehensive features, mobile responsiveness as future enhancement
 6. **USD-First Design**: All calculations, budgets, and totals default to USD with automatic MXN conversion for seamless cross-currency management
 7. **Cross-Border Focus**: Designed specifically for Mexico-based users managing US financial accounts
 8. **Gamification**: Use visual rewards, progress tracking, and achievement systems to make saving money engaging and motivating
@@ -109,7 +109,7 @@ A comprehensive personal budgeting application designed for people living in Mex
 
 ## Monitoring & Visibility
 
-- **Dashboard Type**: Web-based responsive dashboard with mobile app capabilities
+- **Dashboard Type**: Desktop-optimized web application with comprehensive financial management features
 - **Real-time Updates**: Live updates for budget progress, spending alerts, and account balance changes
 - **Key Metrics Displayed**: 
   - Current month budget status (all amounts in USD equivalent)
@@ -122,6 +122,25 @@ A comprehensive personal budgeting application designed for people living in Mex
   - Spending challenge status and impulse purchase tracking
   - Toggle option to view individual transactions in original currency
 - **Sharing Capabilities**: Export functionality for financial reports, budget summaries, and tax preparation
+
+## Platform Strategy
+
+### Desktop-First Approach
+This application is designed primarily for desktop use, taking advantage of larger screens and more powerful hardware to provide comprehensive financial management features. The desktop-first approach allows for:
+
+- **Rich Data Visualization**: Complex charts, graphs, and financial dashboards that require screen real estate
+- **Multi-Panel Layouts**: Side-by-side comparison of budgets, transactions, and savings goals
+- **Advanced Data Entry**: Comprehensive forms and bulk transaction management
+- **Detailed Analytics**: In-depth financial reports and trend analysis
+- **Keyboard Shortcuts**: Power-user features for efficient data entry and navigation
+
+### Future Mobile Considerations
+While the initial focus is on desktop optimization, the application architecture is designed to support future mobile development:
+
+- **Responsive Foundation**: Core components built with responsive design principles
+- **Mobile API Ready**: Backend services designed to support mobile-specific features
+- **Progressive Enhancement**: Features can be progressively enhanced for mobile use cases
+- **Future Mobile App**: Native mobile applications planned for future releases
 
 ## Future Vision
 

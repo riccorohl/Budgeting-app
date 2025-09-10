@@ -4,83 +4,123 @@
 
 ```
 budgeting-app/
-├── public/                    # Static assets
-│   ├── index.html
+├── app/                          # Next.js App Router pages
+│   ├── (auth)/                   # Route groups for authentication
+│   ├── budget/                   # Budget management page
+│   ├── calendar/                 # Calendar integration page
+│   ├── dashboard/                # Main dashboard page
+│   ├── savings/                  # Savings goals page
+│   ├── transactions/             # Transaction management page
+│   ├── globals.css               # Global styles and Tailwind imports
+│   ├── layout.tsx                # Root layout with navigation
+│   └── page.tsx                  # Homepage (dashboard)
+├── components/                    # Reusable React components
+│   ├── ui/                      # shadcn/ui base components
+│   │   ├── accordion.tsx
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── chart.tsx
+│   │   ├── form.tsx
+│   │   ├── input.tsx
+│   │   ├── progress.tsx
+│   │   ├── select.tsx
+│   │   ├── table.tsx
+│   │   └── [other-ui-components]
+│   ├── budget-management.tsx    # Budget allocation and tracking
+│   ├── calendar-view.tsx        # Financial calendar component
+│   ├── dashboard.tsx            # Main financial dashboard
+│   ├── header.tsx               # Top navigation header
+│   ├── savings-goals.tsx        # Gamified savings interface
+│   ├── sidebar.tsx              # Main navigation sidebar
+│   ├── theme-provider.tsx       # Theme context provider
+│   └── transaction-management.tsx # Transaction CRUD interface
+├── lib/                          # Utility functions and configurations
+│   ├── utils.ts                 # General utility functions
+│   ├── validations.ts           # Zod schema validations
+│   ├── currency.ts              # Currency conversion utilities
+│   ├── date.ts                  # Date formatting utilities
+│   └── api.ts                   # API client configuration
+├── hooks/                        # Custom React hooks
+│   ├── use-mobile.ts            # Mobile detection hook
+│   ├── use-toast.ts             # Toast notification hook
+│   ├── use-currency.ts          # Currency conversion hook
+│   ├── use-budget.ts            # Budget management hook
+│   └── use-transactions.ts      # Transaction management hook
+├── services/                     # API and external service integrations
+│   ├── api/                     # Internal API routes
+│   │   ├── auth/
+│   │   ├── budget/
+│   │   ├── transactions/
+│   │   └── savings/
+│   ├── exchange-rate/           # Exchange rate API service
+│   │   ├── exchange-rate-service.ts
+│   │   └── types.ts
+│   └── bank-integration/        # Bank API integrations
+│       ├── plaid-service.ts
+│       └── types.ts
+├── stores/                       # State management (Zustand stores)
+│   ├── auth-store.ts            # Authentication state
+│   ├── budget-store.ts          # Budget data state
+│   ├── transaction-store.ts     # Transaction data state
+│   ├── savings-store.ts         # Savings goals state
+│   └── settings-store.ts        # User settings state
+├── types/                        # TypeScript type definitions
+│   ├── api.ts                   # API response types
+│   ├── budget.ts                # Budget-related types
+│   ├── transaction.ts           # Transaction types
+│   ├── savings.ts               # Savings goal types
+│   ├── user.ts                  # User and auth types
+│   └── currency.ts              # Currency conversion types
+├── constants/                    # Application constants
+│   ├── currencies.ts            # Currency codes and symbols
+│   ├── categories.ts            # Budget categories
+│   ├── config.ts                # App configuration
+│   └── exchange-rates.ts        # Exchange rate constants
+├── public/                       # Static assets
+│   ├── images/                  # Image assets
+│   │   ├── savings-goals/       # Savings goal images
+│   │   └── icons/               # App icons
 │   ├── favicon.ico
 │   └── manifest.json
-├── src/                       # Source code
-│   ├── components/            # Reusable UI components
-│   │   ├── atoms/            # Basic building blocks
-│   │   ├── molecules/        # Simple component combinations
-│   │   ├── organisms/        # Complex UI sections
-│   │   └── templates/        # Page layouts
-│   ├── pages/                # Page components
-│   │   ├── Dashboard/
-│   │   ├── Budget/
-│   │   ├── Transactions/
-│   │   ├── SavingsGoals/
-│   │   └── Calendar/
-│   ├── hooks/                # Custom React hooks
-│   ├── services/             # API and external service integrations
-│   │   ├── api/
-│   │   ├── exchangeRate/
-│   │   └── bankIntegration/
-│   ├── stores/               # Zustand state stores
-│   │   ├── userStore.ts
-│   │   ├── budgetStore.ts
-│   │   ├── transactionStore.ts
-│   │   └── settingsStore.ts
-│   ├── utils/                # Utility functions
-│   │   ├── currency/
-│   │   ├── date/
-│   │   ├── validation/
-│   │   └── formatting/
-│   ├── types/                # TypeScript type definitions
-│   │   ├── api.ts
-│   │   ├── budget.ts
-│   │   ├── transaction.ts
-│   │   └── user.ts
-│   ├── constants/            # Application constants
-│   │   ├── currencies.ts
-│   │   ├── categories.ts
-│   │   └── config.ts
-│   ├── styles/               # Global styles and themes
-│   │   ├── theme.ts
-│   │   ├── globals.css
-│   │   └── components/
-│   └── App.tsx               # Main application component
-├── tests/                    # Test files
-│   ├── components/
-│   ├── pages/
-│   ├── services/
-│   └── utils/
-├── docs/                     # Documentation
-│   ├── api/
-│   ├── components/
-│   └── deployment/
-├── scripts/                  # Build and utility scripts
-│   ├── build.js
-│   ├── deploy.js
-│   └── generate-types.js
-├── .env.example             # Environment variables template
+├── tests/                        # Test files
+│   ├── components/              # Component tests
+│   ├── pages/                   # Page tests
+│   ├── services/                # Service tests
+│   ├── utils/                   # Utility tests
+│   └── __mocks__/               # Test mocks
+├── docs/                         # Documentation
+│   ├── api/                     # API documentation
+│   ├── components/              # Component documentation
+│   └── deployment/              # Deployment guides
+├── scripts/                      # Build and utility scripts
+│   ├── build.js                 # Custom build scripts
+│   ├── deploy.js                # Deployment scripts
+│   └── generate-types.js        # Type generation scripts
+├── .env.example                 # Environment variables template
+├── .env.local                   # Local environment variables
 ├── .gitignore
+├── components.json              # shadcn/ui configuration
+├── next.config.mjs              # Next.js configuration
 ├── package.json
-├── tsconfig.json
-├── vite.config.ts
+├── pnpm-lock.yaml
+├── postcss.config.mjs           # PostCSS configuration
+├── tailwind.config.ts           # Tailwind CSS configuration
+├── tsconfig.json                # TypeScript configuration
 └── README.md
 ```
 
 ## Naming Conventions
 
 ### Files
-- **Components/Modules**: `PascalCase` (e.g., `BudgetCard.tsx`, `TransactionList.tsx`)
-- **Services/Handlers**: `camelCase` with descriptive suffix (e.g., `exchangeRateService.ts`, `bankApiHandler.ts`)
-- **Utilities/Helpers**: `camelCase` with descriptive suffix (e.g., `currencyUtils.ts`, `dateHelpers.ts`)
+- **Components/Pages**: `PascalCase` (e.g., `BudgetManagement.tsx`, `Dashboard.tsx`)
+- **Services/Utilities**: `camelCase` with descriptive suffix (e.g., `exchangeRateService.ts`, `currencyUtils.ts`)
+- **Hooks**: `use-` prefix with kebab-case (e.g., `use-currency.ts`, `use-budget.ts`)
+- **Types**: `camelCase` with `.types.ts` suffix (e.g., `budget.types.ts`, `transaction.types.ts`)
 - **Tests**: `[filename].test.ts` or `[filename].test.tsx`
-- **Types**: `[name].types.ts` (e.g., `budget.types.ts`, `transaction.types.ts`)
+- **Configuration**: `kebab-case` (e.g., `next.config.mjs`, `tailwind.config.ts`)
 
 ### Code
-- **Classes/Types**: `PascalCase` (e.g., `Budget`, `Transaction`, `SavingsGoal`)
+- **Components/Types**: `PascalCase` (e.g., `BudgetCard`, `Transaction`, `SavingsGoal`)
 - **Functions/Methods**: `camelCase` (e.g., `calculateTotal`, `formatCurrency`)
 - **Constants**: `UPPER_SNAKE_CASE` (e.g., `DEFAULT_CURRENCY`, `API_ENDPOINTS`)
 - **Variables**: `camelCase` (e.g., `userBudget`, `transactionAmount`)
@@ -90,24 +130,26 @@ budgeting-app/
 
 ### Import Order
 1. React and React-related imports
-2. Third-party libraries (Material-UI, Chart.js, etc.)
-3. Internal services and utilities
-4. Types and interfaces
-5. Relative imports (components, pages)
-6. Style imports (CSS modules, styled-components)
+2. Next.js imports
+3. Third-party libraries (shadcn/ui, Recharts, etc.)
+4. Internal services and utilities
+5. Types and interfaces
+6. Relative imports (components, pages)
+7. Style imports (CSS modules, Tailwind classes)
 
 ### Module/Package Organization
 ```typescript
 // Example import structure
-import React, { useState, useEffect } from 'react';
-import { Box, Card, Typography } from '@mui/material';
-import { Line } from 'react-chartjs-2';
+import React, { useState, useEffect } from 'react'
+import { NextPage } from 'next'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
-import { useBudgetStore } from '@/stores/budgetStore';
-import { formatCurrency } from '@/utils/currency/formatting';
-import { Budget } from '@/types/budget';
-import { BudgetCardProps } from './BudgetCard.types';
-import './BudgetCard.css';
+import { useBudgetStore } from '@/stores/budget-store'
+import { formatCurrency } from '@/lib/utils'
+import { Budget } from '@/types/budget'
+import { BudgetCardProps } from './BudgetCard.types'
+import './BudgetCard.css'
 ```
 
 ## Code Structure Patterns
@@ -115,8 +157,8 @@ import './BudgetCard.css';
 ### Module/Class Organization
 ```typescript
 // 1. Imports and dependencies
-import React from 'react';
-import { useQuery } from '@tanstack/react-query';
+import React from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 // 2. Types and interfaces
 interface ComponentProps {
@@ -126,23 +168,23 @@ interface ComponentProps {
 // 3. Constants
 const DEFAULT_VALUES = {
   // constant values
-};
+}
 
 // 4. Main component implementation
 export const ComponentName: React.FC<ComponentProps> = ({ prop1, prop2 }) => {
   // component logic
   return (
     // JSX
-  );
-};
+  )
+}
 
 // 5. Helper functions (if needed)
 const helperFunction = () => {
   // helper logic
-};
+}
 
 // 6. Default export
-export default ComponentName;
+export default ComponentName
 ```
 
 ### Function/Method Organization
@@ -150,7 +192,7 @@ export default ComponentName;
 // 1. Input validation
 const processTransaction = (transaction: Transaction) => {
   if (!transaction || !transaction.amount) {
-    throw new Error('Invalid transaction data');
+    throw new Error('Invalid transaction data')
   }
 
   // 2. Core logic
@@ -158,11 +200,11 @@ const processTransaction = (transaction: Transaction) => {
     transaction.amount,
     transaction.currency,
     'USD'
-  );
+  )
 
   // 3. Error handling
   if (convertedAmount < 0) {
-    throw new Error('Invalid conversion result');
+    throw new Error('Invalid conversion result')
   }
 
   // 4. Clear return
@@ -171,8 +213,8 @@ const processTransaction = (transaction: Transaction) => {
     amountUSD: convertedAmount,
     originalAmount: transaction.amount,
     originalCurrency: transaction.currency
-  };
-};
+  }
+}
 ```
 
 ### File Organization Principles
@@ -243,7 +285,7 @@ src/
 - **Dashboard components**: Isolated from business logic, focused on presentation
 - **Data fetching**: Separate hooks for dashboard data management
 - **Real-time updates**: Polling and caching strategies for live data
-- **Responsive design**: Mobile-first approach with breakpoint management
+- **Responsive design**: Desktop-first approach with mobile breakpoints
 
 ## Documentation Standards
 
@@ -269,5 +311,5 @@ export const convertCurrency = (
   exchangeRate: number
 ): number => {
   // Implementation
-};
+}
 ```
